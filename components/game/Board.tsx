@@ -5,7 +5,7 @@ import Info from './Info'
 const styles = {
 	container: {
 		width: '90%',
-		maxWidth: '711px',
+		maxWidth: '568px',
 		textAlign: 'center',
 		maxHeight: 'calc(100vh - 80px - 1rem)',
 	},
@@ -111,7 +111,7 @@ const Board = ({ game, resetGame, cards }: Props) => {
 							key={c}
 							image={`/images/${c % (cards.length / 2) + 1}.jpg`}
 							id={c}
-							isAble={ableCards}
+							isAble={true}
 							isInactive={checkIsInactive(c)}
 							isFlipped={checkIsFlipped(c)}
 							onClick={handleCardClick}
