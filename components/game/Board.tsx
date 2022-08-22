@@ -1,26 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import Card from './Card'
 import Info from './Info'
-
-const styles = {
-	container: {
-		width: '90%',
-		maxWidth: '568px',
-		textAlign: 'center',
-		maxHeight: 'calc(100vh - 80px - 1rem)',
-	},
-	reset: {
-		border: 'none',
-		backgroundColor: 'transparent',
-		color: 'lightgray',
-		cursor: 'pointer',
-	},
-	grid: {
-		display: 'grid',
-		gridTemplateColumns: 'repeat(8, 1fr)', //Easy 6 - Medium 7 - Hard 8
-		gap: '.5em'
-	}
-}
+import styles from '../../styles/game/Board.module.css'
 
 type Props = {
 	game: string,
@@ -98,13 +79,17 @@ const Board = ({ game, resetGame, cards }: Props) => {
 	}
 
 	return (
-		<div style={styles.container as React.CSSProperties}>
+		<div className={styles.container}>
 			<div>{game} mode</div>
-			<button onClick={() => resetGame('')} style={styles.reset}>Reset</button>
+			<button onClick={() => resetGame('')} className={styles.reset}>Reset</button>
 
 			<Info moves={5} />
-
-			<div style={styles.grid}>
+			<div
+				className={`
+			${styles.grid} 
+			${game === 'Easy' ? styles.colsEasy
+						: game === 'Medium' ? styles.colsMedium
+							: game === 'Hard' && styles.colsHard}`}>
 				{
 					cards.map(c =>
 						<Card

@@ -1,0 +1,30 @@
+.container {
+	width: 90%;
+	max-width: 568px;
+	text-align: center;
+	max-height: calc(100vh - 80px - 1rem);
+}
+
+.reset {
+	border: none;
+	background-color: transparent;
+	color: lightgray;
+	cursor: pointer;
+}
+
+.grid {
+	display: grid;
+	gap: .5em;
+}
+
+.colsEasy {
+	grid-template-columns: repeat(6, 1fr);
+}
+
+.colsMedium {
+	grid-template-columns: repeat(7, 1fr);
+}
+
+.colsHard {
+	grid-template-columns: repeat(8, 1fr);
+}
