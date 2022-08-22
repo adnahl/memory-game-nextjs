@@ -1,4 +1,4 @@
-import classStyle from '../../../styles/game/Card.module.css'
+import classStyle from '../../styles/game/Card.module.css'
 
 const styles = {
 	cardFace: {

@@ -9,7 +9,6 @@ type Props = {
 	cards: Array<number>,
 }
 
-// const Board = ({ game }: { game: string }) => {
 const Board = ({ game, resetGame, cards }: Props) => {
 	const [pairCards, setPairCards] = useState<Array<number>>([])
 	const [clearedCards, setClearedCards] = useState<Array<number>>([])
@@ -29,7 +28,7 @@ const Board = ({ game, resetGame, cards }: Props) => {
 	const flipCardBack = () => {
 		timeout.current = setTimeout(() => {
 			setPairCards([])
-		}, 1000)
+		}, 500)
 	}
 
 	const check = () => {
@@ -83,7 +82,7 @@ const Board = ({ game, resetGame, cards }: Props) => {
 			<div>{game} mode</div>
 			<button onClick={() => resetGame('')} className={styles.reset}>Reset</button>
 
-			<Info moves={5} />
+			<Info moves={moves} />
 			<div
 				className={`
 			${styles.grid} 
