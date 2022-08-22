@@ -1,23 +1,8 @@
+import classStyle from '../../../styles/game/Card.module.css'
+
 const styles = {
-	isFlipped: {
-		transform: 'rotateY(180deg)',
-	},
-	isInactive: {
-		opacity: '0',
-	},
 	cardFace: {
 		backfaceVisibility: 'hidden',
-	},
-	cardBackFace: {
-		backfaceVisibility: 'hidden',
-		transform: 'rotateY(180deg)'
-	},
-	card: {
-		transition: '0.5s',
-		transformStyle: 'preserve-3d',
-		position: 'relative',
-		cursor: 'pointer',
-		color: 'transparent',
 	},
 	img: {
 		width: '100%',
@@ -43,13 +28,17 @@ function Card(props: CardProps) {
 	}
 
 	return (
-		<div onClick={handleClick}>
-			{/* style={`${styles.card}, ${props.isFlipped && styles.isFlipped}, 
-				${props.isInactive && styles.isInactive}` as React.CSSProperties} */}
-			<div style={styles.cardBackFace as React.CSSProperties}>
+		<div onClick={handleClick}
+			className={
+				`${classStyle.card} 
+				${props.isFlipped && classStyle.flipped} 
+				${props.isInactive && classStyle.inactive}`
+			}
+		>
+			<div className={`${classStyle.cardBackFace} ${classStyle.cardFace}`}>
 				<img src={backSide} alt='' style={styles.img} />
 			</div>
-			<div style={styles.cardFace as React.CSSProperties}>
+			<div className={classStyle.cardFace}>
 				<img src={props.image} alt='' style={styles.img} />
 			</div>
 		</div>
