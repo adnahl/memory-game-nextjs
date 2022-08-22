@@ -10,11 +10,11 @@ const styles = {
     marginTop: '2rem',
     color: 'gray'
   },
-  levels: {
+  modes: {
     display: 'flex',
     gap: '.5em',
   },
-  level: {
+  mode: {
     border: '1px solid #59dcff',
     borderRadius: '5px',
     backgroundColor: 'transparent',
@@ -24,15 +24,48 @@ const styles = {
   }
 }
 
-const levels = [
+const modes = [
   'Easy',
   'Medium',
   'Hard',
-  'Extreme'
+  // 'Extreme'
 ]
+
+const arrayCards = (cant: number) => {
+  let arr = []
+  for (let i = 0; i < cant; i++) {
+    arr.push(i + 1)
+  }
+  arr.sort(() => 0.5 - Math.random())
+  return arr
+}
 
 const Home: NextPage = () => {
   const [game, startGame] = useState<string>('')
+  const [cards, setCards] = useState<Array<number>>([])
+
+  const handleStartGame = (mode: string) => {
+    switch (mode) {
+      case 'Extreme':
+        setCards(arrayCards(72)) // 8x9 - 36 images
+        break
+
+      case 'Hard':
+        setCards(arrayCards(32))  // 4x8 - 16 images
+        break
+
+      case 'Medium':
+        setCards(arrayCards(20))  // 3x5 - 10 images
+        break
+
+      case 'Easy':
+      default:
+        setCards(arrayCards(12))  // 3x4 - 6 images
+        break
+    }
+    startGame(mode)
+  }
+
   return (
     <>
       {
@@ -40,18 +73,18 @@ const Home: NextPage = () => {
           ?
           <>
             <div style={styles.title}>Memory game</div>
-            <div style={styles.subTitle}>- Select a level -</div>
-            <div style={styles.levels}>
+            <div style={styles.subTitle}>- Select a mode -</div>
+            <div style={styles.modes}>
               {
-                levels.map((level) =>
-                  <button style={styles.level} onClick={() => startGame(level)}>
-                    {level}
+                modes.map((mode) =>
+                  <button style={styles.mode} onClick={() => handleStartGame(mode)}>
+                    {mode}
                   </button>)
               }
             </div>
           </>
           :
-          <Board game={game} reset={startGame} />
+          <Board game={game} resetGame={startGame} cards={cards} />
       }
     </>
   )
