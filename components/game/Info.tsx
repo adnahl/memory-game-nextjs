@@ -4,7 +4,7 @@ const styles = {
 	container: {
 		margin: '2rem 0',
 		padding: '1rem',
-		border: '1px solid #59dcff',
+		border: '1px solid #ff6022',
 		fontFamily: "'Inconsolata', monospace",
 		borderRadius: '4px'
 	},

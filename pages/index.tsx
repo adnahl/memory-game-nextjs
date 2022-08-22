@@ -15,10 +15,10 @@ const styles = {
     gap: '.5em',
   },
   mode: {
-    border: '1px solid #59dcff',
+    border: '1px solid #ff6022',
     borderRadius: '5px',
     backgroundColor: 'transparent',
-    color: '#59dcff',
+    color: '#ff6022',
     padding: '.5rem 1rem',
     cursor: 'pointer',
   }
