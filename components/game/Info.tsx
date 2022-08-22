@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 const styles = {
 	container: {
-		marginTop: '2rem',
+		margin: '2rem 0',
 		padding: '1rem',
 		border: '1px solid #59dcff',
 		fontFamily: "'Inconsolata', monospace",
