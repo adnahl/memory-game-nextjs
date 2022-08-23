@@ -9,12 +9,20 @@ type Props = {
 	cards: Array<number>,
 }
 
+type HighScore = {
+	mode: string,
+	moves: number,
+	time: number
+}
+
 const Board = ({ game, resetGame, cards }: Props) => {
 	const [pairCards, setPairCards] = useState<Array<number>>([])
 	const [clearedCards, setClearedCards] = useState<Array<number>>([])
 	const [ableCards, setAbleCards] = useState<boolean>(true)
 	const timeout = useRef<NodeJS.Timeout>(setTimeout(() => { }))
 	const [moves, setMoves] = useState<number>(0)
+	const [highScore, setHighScore] = useState<Array<HighScore>>(JSON.parse(localStorage.getItem('highScores') || '[]'))
+	const [finished, setFinished] = useState<boolean>(false)
 
 	const equalCards = (one: number, two: number) => {
 		if ((one % (cards.length / 2) + 1) === (two % (cards.length / 2) + 1)) {
@@ -40,7 +48,8 @@ const Board = ({ game, resetGame, cards }: Props) => {
 
 	const complete = () => {
 		if (clearedCards.length === cards.length) {
-			resetGame('')
+			// resetGame('')
+			setFinished(true)
 		}
 	}
 
@@ -58,7 +67,7 @@ const Board = ({ game, resetGame, cards }: Props) => {
 	useEffect(() => {
 		let timeout: NodeJS.Timeout = setTimeout(() => { })
 		if (pairCards.length === 2) {
-			timeout = setTimeout(check, 500)
+			timeout = setTimeout(check, 25)
 		}
 		return () => {
 			clearTimeout(timeout)
@@ -80,9 +89,18 @@ const Board = ({ game, resetGame, cards }: Props) => {
 	return (
 		<div className={styles.container}>
 			<div>{game} mode</div>
-			<button onClick={() => resetGame('')} className={styles.reset}>Reset</button>
+			<button onClick={() => resetGame('')} className={styles.reset}>
+				Go back
+			</button>
 
-			<Info moves={moves} />
+			<Info
+				moves={moves}
+				highScore={highScore}
+				setHighScore={setHighScore}
+				finished={finished}
+				mode={game}
+			/>
+
 			<div
 				className={`
 			${styles.grid} 

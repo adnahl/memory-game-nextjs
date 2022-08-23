@@ -21,6 +21,13 @@ const styles = {
     color: '#ff6022',
     padding: '.5rem 1rem',
     cursor: 'pointer',
+  },
+  resetScoreBtn: {
+    marginTop: '2rem',
+    backgroundColor: 'transparent',
+    border: 'none',
+    color: 'darkred',
+    cursor: 'pointer'
   }
 }
 
@@ -66,6 +73,11 @@ const Home: NextPage = () => {
     startGame(mode)
   }
 
+  const resetScore = () => {
+    let proceed = confirm('Are you sure you want to reset score?')
+    if (proceed) localStorage.setItem("highScores", JSON.stringify([]))
+  }
+
   return (
     <>
       {
@@ -82,6 +94,10 @@ const Home: NextPage = () => {
                   </button>)
               }
             </div>
+
+            <button style={styles.resetScoreBtn} onClick={resetScore}>
+              &#x26A0; Reset Score
+            </button>
           </>
           :
           <Board game={game} resetGame={startGame} cards={cards} />
