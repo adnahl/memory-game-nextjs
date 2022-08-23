@@ -21,7 +21,7 @@ type CardProps = {
 }
 
 function Card(props: CardProps) {
-	const backSide = '/images/backside.avif'
+	const backSide = '/images/backside.jpg'
 
 	const handleClick = () => {
 		!props.isFlipped && props.isAble && props.onClick(props.id)
