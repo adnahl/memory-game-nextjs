@@ -89,7 +89,10 @@ const Home: NextPage = () => {
             <div style={styles.modes}>
               {
                 modes.map((mode) =>
-                  <button style={styles.mode} onClick={() => handleStartGame(mode)}>
+                  <button
+                    key={mode}
+                    style={styles.mode} onClick={() => handleStartGame(mode)}
+                  >
                     {mode}
                   </button>)
               }
